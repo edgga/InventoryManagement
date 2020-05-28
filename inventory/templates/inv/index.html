@@ -1,0 +1,72 @@
+{% extends 'inv/base.html' %}
+
+{% block body %}
+
+  <div class="add_buttons">
+
+    <div class="button-group">
+      <a href="{% url 'display_laptops' %}" class="btn btn-primary btn-md btn-trim" role="button"> Laptopai</a>
+      <a href="{% url 'add_laptop' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_desktops' %}" class="btn btn-primary btn-md btn-trim" role="button"> Stacionarai</a>
+      <a href="{% url 'add_desktop' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_mobiles' %}" class="btn btn-primary btn-md btn-trim" role="button"> Išmanieji telefonai</a>
+      <a href="{% url 'add_mobile' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+    </div>
+
+  </div>
+
+  <div>
+
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Prekės ženklas</th>
+        <th>Modelis</th>
+        <th>Kaina</th>
+        <th>Kiekis</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for item in items %}
+
+      <tr>
+        <td>{{ item.pk }}
+        <td>{{ item.brand }}</td>
+        <td>{{ item.modelis }}</td>
+        <td>{{ item.kaina }} €</td>
+        <td>{{ item.kiekis }} vnt.</td>
+
+
+        {% if header|lower == "laptops" %}
+        <td>
+            <a href="{% url 'edit_laptop' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_laptop' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% elif header|lower == "desktops" %}
+        <td>
+            <a href="{% url 'edit_desktop' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_desktop' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% else %}
+        <td>
+            <a href="{% url 'edit_mobile' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_mobile' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% endif %}
+
+
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
