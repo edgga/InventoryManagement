@@ -4,10 +4,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
 
 def loginPage(request):
     context = {}
     return render(request, 'inv/login.html', context)
+
+
+def redirect_view(request):
+    response = redirect('/admin/')
+    return response
+
 
 @login_required(login_url='login')
 def index(request):
@@ -17,6 +25,7 @@ def index(request):
     }
     return render(request, 'inv/index.html', context)
 
+
 @login_required(login_url='login')
 def display_laptops(request):
     items = Laptops.objects.all()
@@ -24,6 +33,7 @@ def display_laptops(request):
         'items': items
     }
     return render(request, 'inv/index.html', context)
+
 
 @login_required(login_url='login')
 def display_desktops(request):
@@ -33,6 +43,7 @@ def display_desktops(request):
     }
     return render(request, 'inv/index.html', context)
 
+
 @login_required(login_url='login')
 def display_mobiles(request):
     items = Mobiles.objects.all()
@@ -40,6 +51,7 @@ def display_mobiles(request):
         'items': items
     }
     return render(request, 'inv/index.html', context)
+
 
 @login_required(login_url='login')
 def add_item(request, cls):
@@ -54,17 +66,21 @@ def add_item(request, cls):
         form = cls()
         return render(request, 'inv/add_new.html', {'form': form})
 
+
 @login_required(login_url='login')
 def add_laptop(request):
     return add_item(request, LaptopForm)
+
 
 @login_required(login_url='login')
 def add_desktop(request):
     return add_item(request, DesktopForm)
 
+
 @login_required(login_url='login')
 def add_mobile(request):
     return add_item(request, MobileForm)
+
 
 @login_required(login_url='login')
 def edit_item(request, pk, model, cls):
@@ -80,17 +96,21 @@ def edit_item(request, pk, model, cls):
 
         return render(request, 'inv/edit_item.html', {'form': form})
 
+
 @login_required(login_url='login')
 def edit_laptop(request, pk):
     return edit_item(request, pk, Laptops, LaptopForm)
+
 
 @login_required(login_url='login')
 def edit_desktop(request, pk):
     return edit_item(request, pk, Desktops, DesktopForm)
 
+
 @login_required(login_url='login')
 def edit_mobile(request, pk):
     return edit_item(request, pk, Mobiles, MobileForm)
+
 
 @login_required(login_url='login')
 def delete_laptop(request, pk):
@@ -106,6 +126,7 @@ def delete_laptop(request, pk):
 
     return render(request, template, context)
 
+
 @login_required(login_url='login')
 def delete_desktop(request, pk):
 
@@ -119,6 +140,7 @@ def delete_desktop(request, pk):
     }
 
     return render(request, template, context)
+
 
 @login_required(login_url='login')
 def delete_mobile(request, pk):
