@@ -7,7 +7,7 @@ urlpatterns = [
     # base
     path('', index, name='index'),
     path('login/', auth_views.LoginView.as_view(template_name='inv/login.html'), name="login"),
-    path('/redirect/', redirect_view, name='admin'),
+    path('redirect/', redirect_view, name='admin'),
 
 
     # display

@@ -21,7 +21,8 @@ def redirect_view(request):
 def index(request):
     items = Laptops.objects.all()
     context = {
-        'items': items
+        'items': items,
+        'header': 'Laptops'
     }
     return render(request, 'inv/index.html', context)
 
@@ -30,7 +31,8 @@ def index(request):
 def display_laptops(request):
     items = Laptops.objects.all()
     context = {
-        'items': items
+        'items': items,
+        'header': 'Laptops'
     }
     return render(request, 'inv/index.html', context)
 
@@ -39,7 +41,8 @@ def display_laptops(request):
 def display_desktops(request):
     items = Desktops.objects.all()
     context = {
-        'items': items
+        'items': items,
+        'header': 'Desktops'
     }
     return render(request, 'inv/index.html', context)
 
@@ -48,7 +51,8 @@ def display_desktops(request):
 def display_mobiles(request):
     items = Mobiles.objects.all()
     context = {
-        'items': items
+        'items': items,
+        'header': 'Mobiles'
     }
     return render(request, 'inv/index.html', context)
 
