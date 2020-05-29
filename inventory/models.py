@@ -13,7 +13,7 @@ class Device(models.Model):
         abstract = True
 
     def __str__(self):
-        return 'Brandas: {0} Kaina: {1}'.format(self.brand, self.kaina)
+        return 'Brandas: {0} Modelis: {1} Kaina: {2}'.format(self.brand, self.modelis, self.kaina)
 
 class Desktops(Device):
     pass
